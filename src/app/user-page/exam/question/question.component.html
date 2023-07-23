@@ -1,0 +1,17 @@
+<div>
+  <div *ngFor="let question of questions">
+    <div>
+      <br>
+      <h4>Question : {{ question.question  }} </h4>
+      <label id="example-radio-group-label">Select the option (any one)</label>
+      <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"  >
+        <mat-radio-button class="example-radio-button" *ngFor="let choice of question.Choices" [value]="choice" (change)="checkAnswer($event, question.question)">
+          {{choice.choice }}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+  <button (click)="submitExam()">submit </button>
+</div>

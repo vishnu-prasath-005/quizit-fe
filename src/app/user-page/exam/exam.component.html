@@ -1,0 +1,4 @@
+<div *ngFor="let exam of exams">
+  <a routerLink="instruction" [queryParams]="{ examId: exam.exam_id }">{{ exam | json }}</a>
+</div>
+

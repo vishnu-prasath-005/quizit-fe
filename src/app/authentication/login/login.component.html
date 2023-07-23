@@ -1,0 +1,44 @@
+<div>
+  <h1>Login</h1>
+  <form [formGroup]="loginForm">
+    <label>Email </label>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        placeholder="Eg:cxy@gmail.com"
+        type="email"
+        formControlName="email"
+        [(ngModel)]="email"
+      />
+      <mat-error *ngIf="loginForm.get('email')?.errors?.['required']"
+        >Required</mat-error
+      >
+      <mat-error *ngIf="loginForm.get('email')?.errors?.['pattern']"
+        >Enter valid email</mat-error
+      > </mat-form-field
+    ><br />
+    <label>Password </label>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="password"
+        [(ngModel)]="password"
+      />
+      <mat-error *ngIf="loginForm.get('password')?.errors?.['required']"
+        >Required</mat-error
+      > </mat-form-field
+    ><br />
+    <button
+      mat-raised-button
+      [disabled]="!loginForm.valid"
+      (click)="loginUser()"
+    >
+      Login
+    </button>
+  </form>
+  <p>Dont have an accout </p>
+  <a routerLink="/app/signup">register</a>
+</div>
