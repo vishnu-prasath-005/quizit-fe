@@ -1,17 +1,45 @@
-<div>
+<div *ngIf="!isSubmitted ; else report">
+  <h1>{{timer }}</h1>
   <div *ngFor="let question of questions">
     <div>
-      <br>
-      <h4>Question : {{ question.question  }} </h4>
+      <br />
+      <h4>Question : {{ question.question }}</h4>
       <label id="example-radio-group-label">Select the option (any one)</label>
       <mat-radio-group
         aria-labelledby="example-radio-group-label"
-        class="example-radio-group"  >
-        <mat-radio-button class="example-radio-button" *ngFor="let choice of question.Choices" [value]="choice" (change)="checkAnswer($event, question.question)">
-          {{choice.choice }}
+        class="example-radio-group"
+      >
+        <mat-radio-button
+          class="example-radio-button"
+          *ngFor="let choice of question.Choices"
+          [value]="choice"
+          (change)="checkAnswer($event, question.question)"
+        >
+          {{ choice.choice }}
         </mat-radio-button>
       </mat-radio-group>
     </div>
   </div>
-  <button (click)="submitExam()">submit </button>
+  <button (click)="submitExam()">submit</button>
 </div>
+
+<ng-template #report>
+  <h2>Report</h2>
+  <mat-card class="report-card">
+    <mat-card-header>
+      <mat-card-title>Exam Report</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <h4>Tiltle : {{ examDetails.exam_title }}</h4>
+        <br />
+        <h4>Total Marks : {{ examDetails.total_marks }}</h4>
+        <br />
+        <h4>Pass Marks : {{ examDetails.pass_marks }}</h4>
+        <br />
+        <h4>Your score : {{ examScore }}</h4>
+        <h4>Verdict : {{ verdict }}s</h4>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</ng-template>

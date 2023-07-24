@@ -10,7 +10,11 @@ const routes: Routes = [
       {
         path : 'exam',
         loadChildren : () => import('./exam/exam.module').then( mod => mod.ExamModule)
-      }
+      },
+      {
+        path : 'report',
+        loadChildren : () => import('./report/report.module').then( mod => mod.ReportModule)
+      },
     ]
   }
 ];

@@ -23,6 +23,7 @@ export class LoginComponent {
       .login({ email: this.email, password: this.password })
       .subscribe({
         next: (data) => {
+          localStorage.setItem("user", JSON.stringify(data.userDetails));
           this.router.navigate(['app/user']);
         },
         error: (err) => {

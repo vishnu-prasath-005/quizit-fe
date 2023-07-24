@@ -1,0 +1,41 @@
+<div class="report-container">
+  <div *ngFor="let reports of userReports" class="accordin">
+    <mat-accordion class="dd">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h2>Title : {{ reports.exam_title }}</h2>
+          </mat-panel-title>
+          <mat-panel-title>
+            <h2>Category : {{ reports.category }}</h2>
+          </mat-panel-title>
+          <mat-panel-description>
+            Click to view the Report of the exam
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <h3>
+            Total Marks : {{ reports.total_marks }} Pass Marks : {{ reports.pass_marks }}
+          </h3>
+          <mat-table [dataSource]="reports.Reports" class="mat-elevation-z8">
+            <ng-container matColumnDef="Obtained Marks">
+              <mat-header-cell *matHeaderCellDef> Your Score </mat-header-cell>
+              <mat-cell *matCellDef="let report">
+                {{ report.obtained_marks }}
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Verdict">
+              <mat-header-cell *matHeaderCellDef> Verdict </mat-header-cell>
+              <mat-cell *matCellDef="let report">
+                {{ report.verdict }}
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns">
+            </mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+          </mat-table>
+        </ng-template>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

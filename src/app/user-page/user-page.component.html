@@ -1,4 +1,7 @@
-<h2>Welcome to our Quiz</h2>
-<h4>To start your quiz. Please click exam button</h4>
-<a routerLink="exam">Exam</a>
+<div *ngIf="!isExamStarted">
+  <h2>Welcome to our Quiz</h2>
+  <h4>To start your quiz. Please click exam button</h4>
+  <a routerLink="exam">Exam</a> <br>
+  <a routerLink="report">Reports</a>
+</div>
 <router-outlet></router-outlet>

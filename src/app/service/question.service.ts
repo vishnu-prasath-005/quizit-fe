@@ -10,7 +10,7 @@ export class QuestionService {
   constructor(
     private http : HttpClient
   ){}
-  getQuestions(examId: string): Observable<any> {
+  getQuestions(examId: number): Observable<any> {
     const params = new HttpParams()
     .set('exam_id', examId)
     const header = { 'content-type': 'application/json' };
