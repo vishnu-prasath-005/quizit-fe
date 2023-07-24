@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { CONSTANTS } from '../shared/util/constants';
 
 @Injectable({
@@ -8,6 +8,9 @@ import { CONSTANTS } from '../shared/util/constants';
 })
 export class ExamService {
   constructor(private http: HttpClient) {}
+  examDetails = new BehaviorSubject([]);
+  isExamStarted = new BehaviorSubject(false);
+  
   getAllExam(): Observable<any> {
     const header = { 'content-type': 'application/json' };
     const options = {
@@ -16,5 +19,4 @@ export class ExamService {
     };
     return this.http.get(`${CONSTANTS.baseUrl}/exam`, options)
   }
-  
 }

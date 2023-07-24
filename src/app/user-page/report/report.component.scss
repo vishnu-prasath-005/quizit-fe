@@ -1,0 +1,14 @@
+.report-container{
+  width : calc(100vh - 65px);
+  margin: auto;
+  border: 3px  groove;
+  padding: 10px;
+  .accordin{
+    padding-bottom: 13px;
+    .dd{
+      .h2{
+        font-family: cursive;
+      }
+    }
+  }
+}

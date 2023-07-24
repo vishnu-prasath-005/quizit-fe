@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginGuard } from './shared/util/guards/login.guard';
-import { AuthGuard } from './shared/util/guards/auth.guard';
+import { loginGuard } from './shared/util/guards/login.guard';
+import { authGuard } from './shared/util/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -12,17 +12,17 @@ const routes: Routes = [
   {
     path : 'app/login',
     loadChildren: () => import('./authentication/login/login.module').then( mod => mod.LoginModule ),
-    canActivate: [LoginGuard],
+    canActivate: [loginGuard],
   },
   {
     path : 'app/signup',
     loadChildren: () => import('./authentication/signup/signup.module').then( mod => mod.SignupModule ),
-    canActivate: [LoginGuard],
+    canActivate: [loginGuard],
   },
   {
     path : 'app/user',
     loadChildren: () => import('./user-page/user-page.module').then( mod => mod.UserPageModule),
-    canActivate: [AuthGuard],
+    canActivate: [authGuard],
   },
   {
     path : '**',
