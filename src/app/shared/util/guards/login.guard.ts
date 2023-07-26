@@ -7,13 +7,11 @@ export const loginGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   const authApiService = inject(AuthApiService);
   return authApiService.checkToken().pipe(
-    map((data) => {
-      if (!data.valid) {
-        return true;
-      } else {
-        router.navigate(['app/user']);
-        return false;
+    map((loginData) => {
+      if(loginData.valid){
+        router.navigate(['app/user'])
       }
+      return loginData.valid
     }),
     catchError((err) => {
       return of(true);

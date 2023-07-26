@@ -7,28 +7,30 @@ import { CONSTANTS } from 'src/app/shared/util/constants';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
   email: string = '';
   password: string = '';
   loginForm: FormGroup = new FormGroup({
-    email: new FormControl('', Validators.pattern(CONSTANTS.patterns.email)),
-    password: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.pattern(CONSTANTS.patterns.email), Validators.required]),
+    password: new FormControl('', Validators.required)
   });
-  constructor(private authApiService: AuthApiService, private router: Router) {}
+  
+  constructor(
+    private authApiService: AuthApiService,
+    private router: Router
+  ) {}
 
   loginUser() {
-    this.authApiService
-      .login({ email: this.email, password: this.password })
-      .subscribe({
-        next: (data) => {
-          localStorage.setItem("user", JSON.stringify(data.userDetails));
-          this.router.navigate(['app/user']);
-        },
-        error: (err) => {
-          alert(err.error);
-        },
-      });
+    this.authApiService.login({ email: this.email, password: this.password }).subscribe({
+      next: (userData) => {
+        localStorage.setItem('user', JSON.stringify(userData.userDetails));
+        this.router.navigate(['app/user']);
+      },
+      error: (err) => {
+        alert(err.error);
+      }
+    });
   }
 }

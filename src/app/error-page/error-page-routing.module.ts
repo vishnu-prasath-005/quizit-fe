@@ -4,8 +4,8 @@ import { ErrorpageComponent } from './error-page.component';
 
 const routes: Routes = [
   {
-    path : '',
-    component : ErrorpageComponent
+    path: '',
+    component: ErrorpageComponent
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ErrorPageRoutingModule { }
+export class ErrorPageRoutingModule {}

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ReportService } from 'src/app/service/report.service';
+import { UserReports } from 'src/app/shared/util/interfaces';
 
 @Component({
   selector: 'app-report',
@@ -7,22 +8,21 @@ import { ReportService } from 'src/app/service/report.service';
   styleUrls: ['./report.component.scss']
 })
 export class ReportComponent {
-  userId : string = JSON.parse(localStorage.getItem('user') as string).user_id;
-  displayedColumns: string[] = ['Obtained Marks', 'Verdict'];
-  userReports : any = []
-  constructor(
-    private reportservice : ReportService
-  ){}
-  ngOnInit(){
-   this.getUserReport()
+  userId: string = JSON.parse(localStorage.getItem('user') as string).user_id;
+  displayedColumns: string[] = ['Attempts','Obtained Marks', 'Verdict'];
+  userReports: UserReports[] = [];
+
+  constructor(private reportservice: ReportService) {}
+  
+  ngOnInit() {
+    this.getUserReport();
   }
 
-  getUserReport(){
+  getUserReport() {
     this.reportservice.getReportByUserId(this.userId).subscribe({
-      next : data => {
-        this.userReports = data;
-        console.log(this.userReports)
+      next: (reportData ) => {
+        this.userReports = reportData as UserReports[] ;
       }
-    })
+    });
   }
 }

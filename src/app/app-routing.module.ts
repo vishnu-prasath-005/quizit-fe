@@ -5,28 +5,28 @@ import { authGuard } from './shared/util/guards/auth.guard';
 
 const routes: Routes = [
   {
-    path : '',
-    redirectTo : 'app/login',
-    pathMatch : 'full',
+    path: '',
+    redirectTo: 'app/login',
+    pathMatch: 'full'
   },
   {
-    path : 'app/login',
-    loadChildren: () => import('./authentication/login/login.module').then( mod => mod.LoginModule ),
-    canActivate: [loginGuard],
+    path: 'app/login',
+    loadChildren: () => import('./authentication/login/login.module').then((mod) => mod.LoginModule),
+    canActivate: [loginGuard]
   },
   {
-    path : 'app/signup',
-    loadChildren: () => import('./authentication/signup/signup.module').then( mod => mod.SignupModule ),
-    canActivate: [loginGuard],
+    path: 'app/signup',
+    loadChildren: () => import('./authentication/signup/signup.module').then((mod) => mod.SignupModule),
+    canActivate: [loginGuard]
   },
   {
-    path : 'app/user',
-    loadChildren: () => import('./user-page/user-page.module').then( mod => mod.UserPageModule),
-    canActivate: [authGuard],
+    path: 'app/user',
+    loadChildren: () => import('./user-page/user-page.module').then((mod) => mod.UserPageModule),
+    canActivate: [authGuard]
   },
   {
-    path : '**',
-    loadChildren : () => import('./error-page/error-page.module').then( mod => mod.ErrorPageModule)
+    path: '**',
+    loadChildren: () => import('./error-page/error-page.module').then((mod) => mod.ErrorPageModule)
   }
 ];
 
@@ -34,4 +34,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

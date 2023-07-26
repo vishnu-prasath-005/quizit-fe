@@ -5,20 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { LoginComponent } from './login.component';
 import { LoginRoutingModule } from './login-routing.module';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-  ],
-  imports: [
-    CommonModule,
-    LoginRoutingModule,
-    MatFormFieldModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatCardModule
-  ]
+  declarations: [LoginComponent],
+  imports: [CommonModule, LoginRoutingModule, MatFormFieldModule, FormsModule, ReactiveFormsModule, MatInputModule, MatCardModule]
 })
-export class LoginModule { }
+export class LoginModule {}
