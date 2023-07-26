@@ -2,27 +2,27 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ExamComponent } from './exam.component';
 import { questionGuard } from 'src/app/shared/util/guards/question.guard';
-import { questionDeactivateGuard } from 'src/app/shared/util/guards/question-deactivate.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: ExamComponent,
+    component: ExamComponent
   },
   {
     path: 'instruction',
-    loadChildren: () => import('./instruction/instruction.module').then( mod => mod.InstructionModule),
-    canActivate : [questionGuard]
+    loadChildren: () => import('./instruction/instruction.module').then((mod) => mod.InstructionModule),
+    canActivate: [questionGuard],
   },
   {
-    path : 'question',
-    loadChildren : ()=> import('./question/question.module').then( mod => mod.QuestionModule),
-    canActivate : [questionGuard],
+    path: 'question',
+    loadChildren: () => import('./question/question.module').then((mod) => mod.QuestionModule),
+    canActivate: [questionGuard]
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
+
 export class ExamRoutingModule {}

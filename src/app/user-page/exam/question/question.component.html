@@ -1,27 +1,38 @@
-<div *ngIf="!isSubmitted ; else report">
-  <h1>{{timer }}</h1>
-  <div *ngFor="let question of questions">
-    <div>
-      <br />
-      <h4>Question : {{ question.question }}</h4>
-      <label id="example-radio-group-label">Select the option (any one)</label>
-      <mat-radio-group
-        aria-labelledby="example-radio-group-label"
-        class="example-radio-group"
-      >
-        <mat-radio-button
-          class="example-radio-button"
-          *ngFor="let choice of question.Choices"
-          [value]="choice"
-          (change)="checkAnswer($event, question.question)"
-        >
-          {{ choice.choice }}
-        </mat-radio-button>
-      </mat-radio-group>
-    </div>
+<div *ngIf="!isShowAnswers" class="question-container">
+  <div *ngIf="!isSubmitted && currentQuestion; else report" class="exam-card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <p>
+            Please complete within <b>{{ questionTimer }}</b>
+          <p>
+          <h4>Question: {{ currentQuestion.question }}</h4>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <label id="example-radio-group-label">Select the option (any one)</label>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
+          <mat-radio-button
+            class="example-radio-button"
+            *ngFor="let choice of currentQuestion.Choices"
+            [value]="choice"
+            (change)="checkAnswer($event, currentQuestion.question)"
+          >
+            {{ choice.choice }}
+          </mat-radio-button>
+        </mat-radio-group>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button *ngIf="currentQuestionIndex < questions.length - 1" (click)="next()">Next</button>
+      </mat-card-actions>
+    </mat-card>
+    <button mat-raised-button color="primary" (click)="submitExam()">Submit</button>
   </div>
-  <button (click)="submitExam()">submit</button>
 </div>
+
+<button mat-raised-button *ngIf="isShowAnswers || isSubmitted" color="primary" (click)="navigateIntialPage()">Get back</button>
 
 <ng-template #report>
   <h2>Report</h2>
@@ -31,15 +42,36 @@
     </mat-card-header>
     <mat-card-content>
       <div>
-        <h4>Tiltle : {{ examDetails.exam_title }}</h4>
+        <h4>Tiltle: {{ examDetails.exam_title }}</h4>
         <br />
-        <h4>Total Marks : {{ examDetails.total_marks }}</h4>
+        <h4>Total Marks: {{ examDetails.total_marks }}</h4>
         <br />
-        <h4>Pass Marks : {{ examDetails.pass_marks }}</h4>
+        <h4>Pass Marks: {{ examDetails.pass_marks }}</h4>
         <br />
-        <h4>Your score : {{ examScore }}</h4>
-        <h4>Verdict : {{ verdict }}s</h4>
+        <h4>Your score: {{ examScore }}</h4>
+        <h4>Verdict: {{ verdict }}</h4>
       </div>
     </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="showAnswer()">Show Answers</button>
+    </mat-card-actions>
   </mat-card>
 </ng-template>
+<div *ngIf="isShowAnswers" class="answer-container">
+  <h3>You can check answers</h3>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h4>Question: {{ currentQuestion.question }}</h4>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <h4>Correct Answer: {{ currentQuestion.correctAnswer }}</h4>
+      <h4>Your Score: {{ currentQuestion.score }}</h4>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" *ngIf="currentQuestionIndex > 0" (click)="previous()">Prev</button>
+      <button mat-raised-button color="primary" *ngIf="currentQuestionIndex < questions.length - 1" (click)="next()">Next</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

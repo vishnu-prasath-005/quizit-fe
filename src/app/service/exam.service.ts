@@ -4,19 +4,19 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { CONSTANTS } from '../shared/util/constants';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ExamService {
-  constructor(private http: HttpClient) {}
   examDetails = new BehaviorSubject([]);
-  isExamStarted = new BehaviorSubject(false);
+  isExamStarted = new BehaviorSubject(false); 
   
+  constructor(private http: HttpClient) {}
+
   getAllExam(): Observable<any> {
-    const header = { 'content-type': 'application/json' };
+    const header = CONSTANTS.bulidHeaders()
     const options = {
-      headers : header,
-      withCredentials : true
+      headers: header,
     };
-    return this.http.get(`${CONSTANTS.baseUrl}/exam`, options)
+    return this.http.get(`${CONSTANTS.baseUrl}/exam`, options);
   }
 }

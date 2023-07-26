@@ -4,17 +4,17 @@ import { UserPageComponent } from './user-page.component';
 
 const routes: Routes = [
   {
-    path : '',
-    component : UserPageComponent,
-    children : [
+    path: '',
+    component: UserPageComponent,
+    children: [
       {
-        path : 'exam',
-        loadChildren : () => import('./exam/exam.module').then( mod => mod.ExamModule)
+        path: 'exam',
+        loadChildren: () => import('./exam/exam.module').then((mod) => mod.ExamModule)
       },
       {
-        path : 'report',
-        loadChildren : () => import('./report/report.module').then( mod => mod.ReportModule)
-      },
+        path: 'report',
+        loadChildren: () => import('./report/report.module').then((mod) => mod.ReportModule)
+      }
     ]
   }
 ];
@@ -23,4 +23,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UserPageRoutingModule { }
+
+export class UserPageRoutingModule {}

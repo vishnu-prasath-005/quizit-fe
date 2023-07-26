@@ -5,19 +5,17 @@ import { AuthApiService } from 'src/app/service/auth-api.service';
 
 export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
-  const authApiService = inject(AuthApiService)
+  const authApiService = inject(AuthApiService);
   return authApiService.checkToken().pipe(
-    map((data) => {
-      if (data.valid) {
-        return true;
+    map((loginData) => {
+      if(!loginData.valid){ 
+        router.navigate(['/app/login']);
       }
-      router.navigate(['/app/login']);
-      return false;
+      return loginData.valid;
     }),
-    catchError((err) => {
+    catchError(() => {
       router.navigate(['/app/login']);
       return of(false);
     })
   );
-}
-
+};

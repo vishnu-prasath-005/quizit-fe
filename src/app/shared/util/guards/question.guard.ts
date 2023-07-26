@@ -3,17 +3,16 @@ import { ActivatedRoute, ActivatedRouteSnapshot, CanActivateFn, Router } from '@
 import { Observable, map } from 'rxjs';
 import { ExamService } from 'src/app/service/exam.service';
 
-export const questionGuard: CanActivateFn = (route, state) =>  {
+export const questionGuard: CanActivateFn = (route, state) => {
   const examService = inject(ExamService);
   const router = inject(Router);
   const routes = inject(ActivatedRoute);
   return examService.isExamStarted.pipe(
-    map((data) => {
-      if (data) {
-        return true;
+    map((isExamStarted) => {
+      if(!isExamStarted) {
+        router.navigate([], { relativeTo: routes });
       }
-      router.navigate([],{ relativeTo: routes })
-      return false;
+      return isExamStarted;
     })
   );
 };

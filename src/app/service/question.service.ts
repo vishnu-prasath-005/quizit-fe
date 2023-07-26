@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { CONSTANTS } from '../shared/util/constants';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class QuestionService {
-  constructor(
-    private http : HttpClient
-  ){}
+
+  questions : BehaviorSubject<[]> = new BehaviorSubject([]);
+  totalExamTiming : BehaviorSubject<number> = new BehaviorSubject(0);
+  
+  constructor(private http: HttpClient) {}
+
   getQuestions(examId: number): Observable<any> {
-    const params = new HttpParams()
-    .set('exam_id', examId)
-    const header = { 'content-type': 'application/json' };
+    const params = new HttpParams().set('exam_id', examId);
     const options = {
-      params : params,
-      headers: header,
-      withCredentials: true,
+      params: params,
+      headers: CONSTANTS.bulidHeaders(),
     };
-    return this.http.get(`${CONSTANTS.baseUrl}/exam/question`,options);
+    return this.http.get(`${CONSTANTS.baseUrl}/exam/question`, options);
   }
 }

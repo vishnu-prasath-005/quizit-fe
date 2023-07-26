@@ -4,13 +4,13 @@ import { InstructionComponent } from './instruction.component';
 
 const routes: Routes = [
   {
-    path : '',
-    component : InstructionComponent
-  },
+    path: '',
+    component: InstructionComponent
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class InstructionRoutingModule { }
+export class InstructionRoutingModule {}

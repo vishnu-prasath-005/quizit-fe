@@ -4,8 +4,8 @@ import { SignupComponent } from './signup.component';
 
 const routes: Routes = [
   {
-    path : '',
-    component : SignupComponent
+    path: '',
+    component: SignupComponent
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SignupRoutingModule { }
+export class SignupRoutingModule {}
