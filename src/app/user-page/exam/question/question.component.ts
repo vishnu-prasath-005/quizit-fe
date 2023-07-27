@@ -135,7 +135,7 @@ export class QuestionComponent {
   }
 
   navigateIntialPage() {
-    this.router.navigate(['app/user']);
+    this.router.navigate(['app/user/exam']);
   }
 
   canDeactivate(): boolean {
