@@ -10,6 +10,7 @@ import { CONSTANTS } from 'src/app/shared/util/constants';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
+  hidePassword : boolean = true;
   name: string = '';
   email: string = '';
   password: string = '';
