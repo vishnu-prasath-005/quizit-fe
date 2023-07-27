@@ -10,7 +10,7 @@ import { CONSTANTS } from 'src/app/shared/util/constants';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  hidePassword : boolean = false;
+  hidePassword : boolean = true;
   email: string = '';
   password: string = '';
   loginForm: FormGroup = new FormGroup({
