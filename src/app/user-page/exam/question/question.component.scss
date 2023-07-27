@@ -8,6 +8,15 @@
   background-color: #f5f5f5;
   margin-bottom: 20px;
 
+  .report-button-container{
+    margin-top: 20px;
+    .report-button {
+      padding: 7px 34px;
+      background-color: #07ca73;
+      border: 2px;
+    }
+    
+  }
   .exam-card {
     width: 100%;
   }
@@ -38,10 +47,9 @@
     margin-bottom: 10px;
   }
 
-  .example-radio-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .radio-button {
+    display: grid;
+    justify-content: center;
   }
 
   .example-radio-button {

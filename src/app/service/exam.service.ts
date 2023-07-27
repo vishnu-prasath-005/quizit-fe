@@ -6,6 +6,7 @@ import { CONSTANTS } from '../shared/util/constants';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ExamService {
   examDetails = new BehaviorSubject([]);
   isExamStarted = new BehaviorSubject(false); 
